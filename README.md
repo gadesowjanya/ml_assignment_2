@@ -1,32 +1,32 @@
 # Breast Cancer Wisconsin Classifier
 
 ## a. Problem statement
-This project aims to build and compare different supervised machine learning models for classifying breast cancer as malignant or benign based on tumor features. The objective is to evaluate which classifier performs best in terms of prediction accuracy and classification quality using medical diagnostic data.
+This project focuses on developing a supervised machine learning system to classify breast tumors as malignant or benign using diagnostic measurements extracted from breast cancer imaging data. The objective is to evaluate the effectiveness of several classifiers and identify the model that delivers the best predictive performance for this medical classification problem.
 
-The problem is a binary classification task in which the model predicts whether a tumor is malignant (M) or benign (B) from numerical features extracted from digitized breast mass images.
+The task is a binary classification problem, where the model predicts whether a tumor is malignant (M) or benign (B) based on numerical features derived from the tumor characteristics.
 
 ## b. Dataset description
 The dataset used in this project is the Breast Cancer Wisconsin (Diagnostic) dataset from the UCI Machine Learning Repository.
 
-- Number of samples: 569
-- Number of features: 30 numeric features
+- Total samples: 569
+- Number of features: 30
 - Target variable: Diagnosis
-- Class labels:
+- Classes:
   - M = Malignant
   - B = Benign
 - Feature types: Real-valued measurements such as radius, texture, perimeter, area, smoothness, compactness, concavity, symmetry, and fractal dimension
 
-This dataset is commonly used for evaluating supervised learning algorithms in medical diagnosis problems because it contains enough information to distinguish malignant and benign tumors based on measurable characteristics.
+This dataset is widely used in machine learning research because it contains meaningful feature patterns that help distinguish malignant and benign tumors with high accuracy.
 
 ## c. GitHub Repository Link
 GitHub Repository: https://github.com/gadesowjanya/ml_assignment_2
 
 ## d. Models used
-The following five machine learning models were implemented and compared:
+The following five machine learning models were implemented and evaluated:
 
 - Logistic Regression
 - Decision Tree
-- KNN
+- K-Nearest Neighbors (KNN)
 - Gaussian Naive Bayes
 - Support Vector Machine (SVM)
 
@@ -39,48 +39,25 @@ The following five machine learning models were implemented and compared:
 | Gaussian Naive Bayes | 0.9386 | 0.9934 | 1.0000 | 0.8333 | 0.9091 | 0.8715 |
 | Support Vector Machine | 0.9737 | 0.9947 | 1.0000 | 0.9286 | 0.9630 | 0.9442 |
 
-From the comparison table, the Support Vector Machine (SVM) achieved the highest accuracy and F1 score, making it the best-performing model among the five classifiers tested in this assignment.
+Based on the comparison, the Support Vector Machine (SVM) achieved the highest Accuracy and F1-score, indicating the strongest overall performance among the five models evaluated in this assignment.
 
-## Project setup and execution
-1. Create a virtual environment:
+## Model performance observations
 
-   ```bash
-   python -m venv .venv
-   ```
+| ML Model Name | Observation about model performance |
+|---|---|
+| Logistic Regression | Logistic Regression achieved an Accuracy of 0.900 and a perfect Recall of 1.000, indicating that it correctly identified all malignant cases. However, its Precision of 0.833 shows that one benign case was misclassified as malignant, resulting in a false positive. |
+| Decision Tree | The Decision Tree achieved perfect results across all evaluation metrics, including Accuracy, Precision, Recall, and F1-score, with values of 1.000. It correctly classified every malignant and benign instance in the test dataset without error. |
+| KNN | KNN produced results similar to Logistic Regression, with an Accuracy of 0.900, Precision of 0.833, and Recall of 1.000. It successfully detected all actual malignant cases but misclassified one benign sample due to the local neighborhood structure in the small test set. |
+| Naive Bayes | Naive Bayes achieved an Accuracy of 0.900, Precision of 0.833, and Recall of 1.000. It identified all malignant cases correctly, but it also produced the same single false positive observed in the other competing models. |
+| Support Vector Machine | The Support Vector Machine achieved an Accuracy of 0.900 and Recall of 1.000, showing strong detection of malignant tumors. Although it correctly separated the malignant region, it still allowed one benign case to fall within the decision boundary, resulting in a false positive. |
 
-2. Activate the environment:
+### Overall winner for this dataset
+**Decision Tree** is the best-performing model for this specific dataset, achieving a perfect **F1-score of 1.000** because the dataset was small. Although Decision Tree is more prone to overfitting than SVM or Logistic Regression for bigger dataset.
 
-   On macOS/Linux:
+## Project execution
+1. Open the Streamlit application using the following link:  
+   https://breast-cancer-mlassignment2.streamlit.app/
 
-   ```bash
-   source .venv/bin/activate
-   ```
+2. Upload the file named `sample_prediction.csv` from the repository.
 
-   On Windows PowerShell:
-
-   ```powershell
-   .venv\Scripts\Activate.ps1
-   ```
-
-   On Windows Command Prompt:
-
-   ```cmd
-   .venv\Scripts\activate.bat
-   ```
-
-3. Install the required dependencies:
-
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-4. Run the Streamlit application:
-
-   ```bash
-   streamlit run app.py
-   ```
-
-## App usage
-This application compares the performance of multiple classifiers and allows the user to select a trained model for prediction on a custom CSV dataset. A template CSV file can be downloaded from the app to ensure the required feature columns are included.
-
-The system is designed for educational use only and should not be used for medical diagnosis or treatment decisions.
+3. Select the model to generate predictions and evaluate the results.
